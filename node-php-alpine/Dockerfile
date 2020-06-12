@@ -14,7 +14,10 @@ RUN apk add \
     yarn \
     openssh-client \
     git \
-    bash
+    bash \
+    rsync \
+    nano \
+    composer
 
 RUN yarn global add cross-env
 
