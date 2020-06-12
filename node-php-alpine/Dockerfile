@@ -9,6 +9,8 @@ RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
     calendar \
     curl
 
+RUN apk update
+
 RUN apk add \
     nodejs \
     yarn \
@@ -19,5 +21,7 @@ RUN apk add \
     nano \
     composer
 
-RUN yarn global add cross-env
+RUN composer global require hirak/prestissimo
+
+RUN yarn global add cross-env eslint
 
