@@ -18,10 +18,11 @@ RUN apk add \
     git \
     bash \
     rsync \
-    nano \
-    composer
-
-RUN composer global require hirak/prestissimo
+    nano
 
 RUN yarn global add cross-env eslint
 
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \ 
+    && php -r "if (hash_file('sha384', 'composer-setup.php') === 'c31c1e292ad7be5f49291169c0ac8f683499edddcfd4e42232982d0fd193004208a58ff6f353fde0012d35fdd72bc394') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \ 
+    && php composer-setup.php --install-dir=/usr/bin --filename=composer \
+    && rm composer-setup.php
